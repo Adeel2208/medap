@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Quote, ArrowRight } from 'lucide-react'
 import Breadcrumb from '@/components/ui/Breadcrumb'
 import FadeIn from '@/components/ui/FadeIn'
@@ -54,13 +53,11 @@ export default function CEOMessagePage() {
                 <div className="lg:sticky lg:top-28 overflow-hidden rounded-3xl border border-navy-100 bg-white shadow-[0_20px_50px_-30px_rgba(0,22,41,0.35)]">
                   {ceo.image ? (
                     <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-primary-50 to-navy-50">
-                      <Image
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
                         src={ceo.image}
                         alt={`${ceo.name}, ${ceo.role}`}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 33vw"
-                        className="object-cover object-top"
-                        priority
+                        className="absolute inset-0 h-full w-full object-cover object-top"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#00223e]/85 via-transparent to-transparent" />
                       <div className="absolute inset-x-0 bottom-0 p-6">

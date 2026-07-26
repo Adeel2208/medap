@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // Serve images directly from /public instead of through Vercel's on-demand
+    // optimizer. This keeps all next/image usages (logos, galleries, portraits)
+    // working reliably on Vercel and avoids optimizer failures on large PNGs.
+    unoptimized: true,
     domains: ['images.unsplash.com', 'via.placeholder.com'],
   },
   // Enable compression for better performance

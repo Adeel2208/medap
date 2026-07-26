@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight, Target, Eye, Users } from 'lucide-react'
 import Breadcrumb from '@/components/ui/Breadcrumb'
 import FadeIn from '@/components/ui/FadeIn'
@@ -222,12 +221,12 @@ export default function AboutPage() {
                   {/* Portrait */}
                   <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-primary-50 to-navy-50">
                     {leader.image ? (
-                      <Image
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
                         src={leader.image}
                         alt={`${leader.name}, ${leader.role}`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                       />
                     ) : (
                       <div className="flex h-full items-center justify-center font-display text-5xl font-extrabold text-primary-200">
