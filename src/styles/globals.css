@@ -58,6 +58,15 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
+    /* Safety net: never allow horizontal scrolling from a stray wide element */
+    overflow-x: hidden;
+  }
+  /* Media never forces the viewport wider than the screen */
+  img,
+  video,
+  svg,
+  iframe {
+    max-width: 100%;
   }
 }
 

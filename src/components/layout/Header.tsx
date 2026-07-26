@@ -106,7 +106,7 @@ export default function Header() {
                           transition={{ duration: 0.15 }}
                           className="absolute left-1/2 -translate-x-1/2 top-full pt-3"
                         >
-                          <div className="w-[600px] rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 p-4 grid grid-cols-2 gap-1">
+                          <div className="w-[min(600px,90vw)] rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 p-4 grid grid-cols-2 gap-1">
                             {categories.map((category) => {
                               const Icon = categoryIcons[category.id]
                               return (

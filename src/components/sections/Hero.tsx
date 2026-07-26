@@ -13,7 +13,7 @@ const heroBadges = [
 
 export default function Hero() {
   return (
-    <section className="relative isolate flex min-h-[80vh] items-center overflow-hidden lg:min-h-[88vh]">
+    <section className="relative isolate flex min-h-[560px] items-center overflow-hidden sm:min-h-[80vh] lg:min-h-[88vh]">
       {/* Background image */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -37,7 +37,7 @@ export default function Hero() {
               <Eyebrow>Smart Medical Equipment, Smarter Care</Eyebrow>
             </FadeIn>
 
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-6xl [text-shadow:0_1px_18px_rgba(255,255,255,0.8)]">
+            <h1 className="mt-6 font-display text-[1.9rem] font-extrabold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-6xl [text-shadow:0_1px_18px_rgba(255,255,255,0.8)]">
               <WordReveal
                 text="Advancing Pakistan's healthcare with complete medical solutions"
                 accent={['complete', 'medical', 'solutions']}
