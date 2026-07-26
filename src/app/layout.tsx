@@ -1,6 +1,8 @@
 import '../styles/globals.css'
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
     default: 'MEDAP International - Leading Healthcare Solutions Provider Since 1990 | Pakistan',
     template: '%s | MEDAP International'
   },
-  description: 'MEDAP International - Pakistan\'s premier supplier of Electro Medical Equipment, Hospital Furniture, Surgical Instruments, Medical Gases, and CSSD equipment. ISO 13485 certified, DRAP approved. Serving 500+ healthcare institutions across Pakistan since 1990.',
+  description: 'MEDAP International - Pakistan\'s premier supplier of Electro Medical Equipment, Hospital Furniture, Surgical Instruments, Medical Gases, and CSSD equipment. ISO certified, DRAP compliant. Serving healthcare institutions across Pakistan since 1990.',
   keywords: [
     'MEDAP International',
     'hospital furniture pakistan',
@@ -39,8 +41,8 @@ export const metadata: Metadata = {
     'operation theatre equipment',
     'hospital beds pakistan',
     'medical furniture',
-    'DRAP approved medical equipment',
-    'ISO certified medical supplier',
+    'DRAP compliant medical equipment',
+    'ISO certified medical equipment supplier',
     'CMH supplier',
     'armed forces medical supplier',
     'healthcare solutions pakistan',
@@ -60,7 +62,7 @@ export const metadata: Metadata = {
     locale: 'en_PK',
     url: 'https://www.medapinternational.com',
     title: 'MEDAP International - Leading Healthcare Solutions Provider Since 1990',
-    description: 'Pakistan\'s premier supplier of Electro Medical Equipment, Hospital Furniture, Surgical Instruments, Medical Gases, and CSSD equipment. ISO 13485 certified, serving 500+ healthcare institutions.',
+    description: 'Pakistan\'s premier supplier of Electro Medical Equipment, Hospital Furniture, Surgical Instruments, Medical Gases, and CSSD equipment. ISO certified and DRAP compliant, serving healthcare institutions nationwide.',
     siteName: 'MEDAP International',
     images: [
       {
@@ -74,7 +76,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'MEDAP International - Leading Healthcare Solutions Provider',
-    description: 'Pakistan\'s premier supplier of medical equipment, hospital furniture, and healthcare solutions. ISO certified, DRAP approved.',
+    description: 'Pakistan\'s premier supplier of medical equipment, hospital furniture, and healthcare solutions. ISO certified, DRAP compliant.',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -133,9 +135,9 @@ export default function RootLayout({
       name: 'Pakistan',
     },
     sameAs: [
-      'https://www.facebook.com/medapinternational',
-      'https://www.linkedin.com/company/medapinternational',
-      // Add other social media links
+      'https://www.facebook.com/MedapInternational/',
+      'https://www.instagram.com/medapinternational',
+      'https://pk.linkedin.com/in/medap-international-44864b84',
     ],
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -177,8 +179,10 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <div className="relative min-h-screen">
-          {children}
+        <div className="relative min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
         </div>
       </body>
     </html>

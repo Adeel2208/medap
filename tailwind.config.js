@@ -111,6 +111,35 @@ module.exports = {
         "marquee": {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        "float-slow": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-24px)" },
+        },
+        "dot-drift": {
+          "0%": { transform: "translate3d(0, 0, 0)" },
+          "100%": { transform: "translate3d(64px, 64px, 0)" },
+        },
+        "ecg-dash": {
+          "0%": { strokeDashoffset: "1400" },
+          "100%": { strokeDashoffset: "0" },
+        },
+        "ecg-sweep": {
+          "0%": { transform: "translateX(-8%)", opacity: "0" },
+          "8%": { opacity: "1" },
+          "92%": { opacity: "1" },
+          "100%": { transform: "translateX(108%)", opacity: "0" },
+        },
+        "particle-rise": {
+          "0%": { transform: "translateY(0) scale(1)", opacity: "0" },
+          "15%": { opacity: "0.7" },
+          "85%": { opacity: "0.7" },
+          "100%": { transform: "translateY(-120px) scale(0.4)", opacity: "0" },
+        },
+        "orbit-slow": {
+          "0%": { transform: "rotate(0deg) translateX(0) scale(1)" },
+          "50%": { transform: "rotate(180deg) translateX(20px) scale(1.08)" },
+          "100%": { transform: "rotate(360deg) translateX(0) scale(1)" },
         }
       },
       animation: {
@@ -122,6 +151,12 @@ module.exports = {
         "float": "float 3s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "marquee": "marquee 30s linear infinite",
+        "float-slow": "float-slow 9s ease-in-out infinite",
+        "dot-drift": "dot-drift 28s linear infinite alternate",
+        "ecg-dash": "ecg-dash 6s linear infinite",
+        "ecg-sweep": "ecg-sweep 6s linear infinite",
+        "orbit-slow": "orbit-slow 22s ease-in-out infinite",
+        "particle-rise": "particle-rise 10s ease-in-out infinite",
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

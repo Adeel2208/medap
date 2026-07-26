@@ -1,256 +1,152 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Award, Shield, Heart } from 'lucide-react'
+import Image from 'next/image'
+import { Mail, Phone, MapPin, Clock, Facebook, Linkedin, Instagram } from 'lucide-react'
+import { site } from '@/data/site'
+import { categories } from '@/data/categories'
 
-const footerSections = [
-  {
-    title: "Quick Links",
-    links: [
-      { name: "Home", href: "/" },
-      { name: "About Us", href: "/about" },
-      { name: "Products", href: "/products" },
-      { name: "Certifications", href: "/certifications" },
-      { name: "Contact", href: "/contact" }
-    ]
-  },
-  {
-    title: "Our Products",
-    links: [
-      { name: "Electro Medical Equipment", href: "/products/electro-medical" },
-      { name: "Medical Gases", href: "/products" },
-      { name: "Hospital Furniture", href: "/products" },
-      { name: "CSSD Equipment", href: "/products" },
-      { name: "Surgical Instruments", href: "/products" }
-    ]
-  },
-  {
-    title: "Company",
-    links: [
-      { name: "CEO Message", href: "/ceo-message" },
-      { name: "Quality & Compliance", href: "/certifications" },
-      { name: "Our Clients", href: "/about" },
-      { name: "Get a Quote", href: "/contact" }
-    ]
-  }
+const companyLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Solutions', href: '/products' },
+  { name: 'Services', href: '/services' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Certifications', href: '/certifications' },
+  { name: 'CEO Message', href: '/ceo-message' },
+  { name: 'Contact', href: '/contact' },
 ]
 
 const socialLinks = [
-  { name: "Facebook", icon: Facebook, href: "#" },
-  { name: "Twitter", icon: Twitter, href: "#" },
-  { name: "LinkedIn", icon: Linkedin, href: "#" },
-  { name: "Instagram", icon: Instagram, href: "#" }
-]
-
-const certifications = [
-  { name: "Since 1990", description: "35+ Years of Excellence" },
-  { name: "Quality Management", description: "ISO Compliant Systems" },
-  { name: "Caring for Life", description: "Our Core Philosophy" },
-  { name: "Trusted Partner", description: "100+ Major Clients" }
+  { name: 'Facebook', icon: Facebook, href: site.social.facebook },
+  { name: 'Instagram', icon: Instagram, href: site.social.instagram },
+  { name: 'LinkedIn', icon: Linkedin, href: site.social.linkedin },
 ]
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      {/* Newsletter Section */}
-      <div className="border-b border-gray-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h3 className="text-2xl lg:text-3xl font-bold mb-4">
-              Stay Connected with MEDAP International
-            </h3>
-            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-              Subscribe to receive updates on new medical equipment, healthcare solutions, 
-              special offers, and industry insights from Pakistan's leading healthcare provider.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="flex-1 px-6 py-4 bg-gray-800 border border-gray-700 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+    <footer className="relative overflow-hidden bg-gradient-to-b from-[#003867] to-[#00223e] text-white/70">
+      {/* Decorative grid + glow */}
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-40" />
+      <div
+        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[40rem] -translate-x-1/2 rounded-full blur-3xl"
+        style={{ background: 'radial-gradient(circle, rgba(45,184,199,0.3), transparent 70%)' }}
+      />
+
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative">
+        <div className="grid gap-12 py-16 lg:grid-cols-12 lg:py-20">
+          {/* Brand */}
+          <div className="lg:col-span-4">
+            <Link href="/" aria-label="MEDAP International — Home" className="inline-flex items-center rounded-lg bg-white px-2.5 py-1.5">
+              <Image
+                src="/MEDAP%20Logo.png"
+                alt="MEDAP International"
+                width={220}
+                height={52}
+                className="h-9 w-auto object-contain"
               />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-[#2db8c7] to-[#25a5b3] px-8 py-4 rounded-2xl font-semibold hover:shadow-lg hover:shadow-[#2db8c7]/25 transition-all duration-300 flex items-center justify-center space-x-2"
-              >
-                <span>Subscribe</span>
-                <ArrowRight size={16} />
-              </motion.button>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Main Footer Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid lg:grid-cols-4 gap-12">
-          {/* Company Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="lg:col-span-2"
-          >
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-r from-[#2db8c7] to-[#25a5b3] rounded-xl flex items-center justify-center">
-                <Heart className="text-white" size={20} />
-              </div>
-              <span className="text-2xl font-bold">MEDAP International</span>
-            </div>
-            
-            <p className="text-gray-400 mb-6 leading-relaxed">
-              Pakistan's leading supplier and service provider of Electro Medical Equipment, Hospital Furniture, 
-              Surgical Instruments, and Medical Gases. Serving healthcare institutions with "Caring for Life" 
-              philosophy since 1990.
+            </Link>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed">
+              {site.name}, delivering reliable medical equipment and caring service to hospitals
+              across Pakistan since {site.foundedYear}.
             </p>
-            
-            {/* Contact Info */}
-            <div className="space-y-3 mb-6">
-              <div className="flex items-center space-x-3">
-                <Phone size={16} className="text-[#2db8c7]" />
-                <span className="text-gray-300">+92-42-36315179 / 36363339</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail size={16} className="text-[#2db8c7]" />
-                <span className="text-gray-300">medap.international@gmail.com</span>
-              </div>
-              <div className="flex items-start space-x-3">
-                <MapPin size={16} className="text-[#2db8c7] mt-1" />
-                <span className="text-gray-300">17 G, Sharf Mansion, Near Ganga Ram Hospital<br />16 Shahrah e Fatima Jinnah, Lahore, Pakistan</span>
-              </div>
+            <div className="mt-6 flex flex-wrap gap-2">
+              <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-white ring-1 ring-inset ring-white/10">
+                ISO Certified
+              </span>
+              <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-white ring-1 ring-inset ring-white/10">
+                DRAP Compliant
+              </span>
             </div>
+          </div>
 
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 bg-gray-800 hover:bg-[#2db8c7] rounded-2xl flex items-center justify-center transition-colors duration-300"
-                >
-                  <social.icon size={18} />
-                </motion.a>
+          {/* Company */}
+          <div className="lg:col-span-2">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Company</h3>
+            <ul className="mt-4 space-y-3 text-sm">
+              {companyLinks.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="transition-colors hover:text-white">
+                    {link.name}
+                  </Link>
+                </li>
               ))}
-            </div>
-          </motion.div>
+            </ul>
+          </div>
 
-          {/* Footer Links */}
-          {footerSections.map((section, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <h4 className="text-lg font-semibold mb-6">{section.title}</h4>
-              <ul className="space-y-3">
-                {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <Link href={link.href}>
-                      <motion.span
-                        whileHover={{ x: 5 }}
-                        className="text-gray-400 hover:text-[#2db8c7] transition-colors duration-200 cursor-pointer inline-block"
-                      >
-                        {link.name}
-                      </motion.span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
+          {/* Products */}
+          <div className="lg:col-span-3">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Solutions</h3>
+            <ul className="mt-4 space-y-3 text-sm">
+              {categories.map((category) => (
+                <li key={category.id}>
+                  <Link href={`/products/${category.id}`} className="transition-colors hover:text-white">
+                    {category.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Certifications */}
-        
-      </div>
+          {/* Get in touch */}
+          <div className="lg:col-span-3">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">Get in touch</h3>
+            <ul className="mt-4 space-y-4 text-sm">
+              <li className="flex gap-3">
+                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary-300" />
+                <span>{site.address}</span>
+              </li>
+              <li className="flex gap-3">
+                <Phone className="mt-0.5 h-5 w-5 shrink-0 text-primary-300" />
+                <span>
+                  <a href={site.phoneHref} className="transition-colors hover:text-white">
+                    {site.phone}
+                  </a>
+                  {' · '}
+                  {site.phoneSecondary}
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary-300" />
+                <span className="break-all">
+                  <a href={`mailto:${site.email}`} className="transition-colors hover:text-white">
+                    {site.email}
+                  </a>
+                  <br />
+                  <a href={`mailto:${site.emailSecondary}`} className="transition-colors hover:text-white">
+                    {site.emailSecondary}
+                  </a>
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <Clock className="mt-0.5 h-5 w-5 shrink-0 text-primary-300" />
+                <span>{site.hours}</span>
+              </li>
+            </ul>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
-          >
-            <div className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} MEDAP International. All rights reserved.
-            </div>
-            
-            <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
-              <motion.a
-                href="#"
-                whileHover={{ y: -1 }}
-                className="text-gray-400 hover:text-[#2db8c7] transition-colors duration-200"
-              >
-                Privacy Policy
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ y: -1 }}
-                className="text-gray-400 hover:text-[#2db8c7] transition-colors duration-200"
-              >
-                Terms of Service
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ y: -1 }}
-                className="text-gray-400 hover:text-[#2db8c7] transition-colors duration-200"
-              >
-                Cookie Policy
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ y: -1 }}
-                className="text-gray-400 hover:text-[#2db8c7] transition-colors duration-200"
-              >
-                Accessibility
-              </motion.a>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Trust Badges */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="bg-gray-950 py-4"
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-center items-center space-x-8 text-xs text-gray-500">
-            <div className="flex items-center space-x-2">
-              <Shield size={14} />
-              <span>Quality Assured</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Award size={14} />
-              <span>Trusted Since 1990</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Heart size={14} />
-              <span>Caring for Life</span>
+            <div className="mt-6 flex gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/5 ring-1 ring-inset ring-white/10 transition-all hover:bg-primary hover:text-white"
+                >
+                  <social.icon className="h-[18px] w-[18px]" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
-      </motion.div>
+
+        {/* Bottom bar */}
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-7 text-xs sm:flex-row">
+          <p>
+            © {new Date().getFullYear()} {site.name}. All rights reserved.
+          </p>
+          <p className="text-white/50">Caring for Life — Since {site.foundedYear}</p>
+        </div>
+      </div>
     </footer>
   )
 }
