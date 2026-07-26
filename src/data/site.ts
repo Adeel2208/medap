@@ -68,18 +68,18 @@ export const leadership: Leader[] = [
     name: 'Javaid Iqbal',
     role: 'C.E.O / Founder',
     bio: 'Founded MEDAP International in 1990 with a simple commitment — give Pakistan\'s hospitals equipment they can depend on, and stand behind it for its entire working life.',
-    image: '/pics/ceo.png',
+    image: '/journey/ceo-photo.png',
   },
   {
     name: 'Mohsin Javaid',
     role: 'Managing Director',
     bio: 'Leads partnerships with our principal manufacturers and oversees the growth of MEDAP\'s solution portfolio across public, private and defence healthcare.',
-    image: '/pics/managing-director.png',
+    image: '/journey/managing-director.png',
   },
   {
     name: 'Muazzam Javaid',
     role: 'Director Operations',
     bio: 'Heads nationwide project delivery — installation, commissioning, staff training and the after-sales service that keeps equipment running.',
-    image: '/pics/director-operations.png',
+    image: '/journey/director-operations.png',
   },
 ]
