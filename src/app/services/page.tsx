@@ -19,20 +19,28 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary-50/60 via-white to-white border-b border-primary-100/60">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-        <div className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-navy/5 blur-3xl" />
-        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-12 lg:py-16">
+      <section className="relative isolate overflow-hidden border-b border-primary-100/60">
+        {/* Background image */}
+        <div aria-hidden="true" className="absolute inset-0 -z-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/services.png" alt="" className="h-full w-full object-cover object-center" />
+          {/* Readability overlays: strong white on the left fading clear on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/25 sm:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/40" />
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent" />
+        </div>
+
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-16 sm:py-20 lg:py-28">
           <Breadcrumb items={[{ name: 'Services' }]} />
           <FadeIn>
-            <div className="mt-8 max-w-3xl">
+            <div className="mt-8 max-w-2xl [text-shadow:0_1px_14px_rgba(255,255,255,0.85)]">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-600">
                 Services &amp; Support
               </p>
-              <h1 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-navy">
+              <h1 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-navy">
                 After-sales support that never sleeps
               </h1>
-              <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+              <p className="mt-4 text-lg leading-relaxed text-gray-700">
                 Buying equipment is only the beginning. MEDAP stands behind every installation for its
                 entire working life — with maintenance, genuine spare parts, training and rapid-response
                 repairs, delivered by our own engineers nationwide.
