@@ -25,10 +25,17 @@ export default function ProductsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden border-b border-primary-100/60 bg-gradient-to-b from-primary-50/70 via-white to-white">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-        <div className="pointer-events-none absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-navy/5 blur-3xl" />
-        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-12 lg:py-20">
+      <section className="relative isolate overflow-hidden border-b border-primary-100/60">
+        {/* Background image (same as home hero) */}
+        <div aria-hidden="true" className="absolute inset-0 -z-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/home.png" alt="" className="h-full w-full object-cover object-center" />
+          {/* Readability overlays: strong white on the left fading clear on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/25 sm:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/40" />
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent" />
+        </div>
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-16 sm:py-20 lg:py-28 [text-shadow:0_1px_14px_rgba(255,255,255,0.7)]">
           <Breadcrumb items={[{ name: 'Solutions' }]} />
           <FadeIn>
             <div className="mt-8 max-w-3xl">
