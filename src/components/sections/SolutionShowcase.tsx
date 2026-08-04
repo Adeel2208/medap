@@ -125,12 +125,7 @@ export default function SolutionShowcase() {
                     {category.products.slice(0, 8).map((product) => (
                       <li key={product.name} className="flex items-start gap-2 text-sm text-navy">
                         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                        <span className="min-w-0">
-                          {product.name}
-                          {product.brand && (
-                            <span className="block text-xs text-gray-400">{product.brand}</span>
-                          )}
-                        </span>
+                        <span className="min-w-0">{product.name}</span>
                       </li>
                     ))}
                   </ul>

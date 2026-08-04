@@ -69,15 +69,14 @@ export default function Clients() {
                   transition={{ duration: 0.3, delay: Math.min(index * 0.02, 0.4) }}
                   className="group flex h-24 items-center justify-center rounded-2xl border border-primary-100 bg-white p-4 shadow-[0_10px_30px_-20px_rgba(0,56,103,0.3)] transition-all duration-300 hover:-translate-y-1 hover:border-primary-200 hover:shadow-[0_20px_40px_-20px_rgba(0,56,103,0.35)]"
                 >
-                  <div className="relative h-full w-full">
-                    <Image
-                      src={logo}
-                      alt={`${sector.label} client logo`}
-                      fill
-                      sizes="(max-width: 640px) 45vw, (max-width: 1024px) 22vw, 160px"
-                      className="object-contain transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
+                  <Image
+                    src={logo}
+                    alt={`${sector.label} client logo`}
+                    width={160}
+                    height={64}
+                    sizes="(max-width: 640px) 45vw, (max-width: 1024px) 22vw, 160px"
+                    className="max-h-14 w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
                 </motion.div>
               ))}
             </div>

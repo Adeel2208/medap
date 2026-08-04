@@ -98,12 +98,9 @@ export default function CategoryPage({ category }: { category: Category }) {
                     <h3 className="font-display font-bold leading-snug text-navy transition-colors group-hover/card:text-primary-700">
                       {product.name}
                     </h3>
-                    {product.brand && (
-                      <p className="mt-1.5 text-xs font-semibold uppercase tracking-wide text-primary-600">
-                        {product.brand}
-                      </p>
+                    {product.model && (
+                      <p className="mt-1.5 text-xs font-medium text-gray-400">{product.model}</p>
                     )}
-                    {product.model && <p className="mt-0.5 text-xs text-gray-400">{product.model}</p>}
                     <Link
                       href={`/contact?category=${category.id}`}
                       className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold text-primary-600 transition-colors hover:text-primary-700"

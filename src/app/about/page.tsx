@@ -56,23 +56,23 @@ const timeline = [
   },
   {
     year: '2000s',
-    title: 'Turnkey MGPS projects',
+    title: 'CSSD Projects',
     description:
-      'Expanded into complete medical gas pipeline system design, installation and commissioning for new hospital projects.',
+      'Expanded into comprehensive Central Sterile Services Department (CSSD) solutions for new hospital projects — providing complete design, supply, installation, testing, commissioning and validation services.',
     image: '/journey/2000.png',
   },
   {
     year: '2010s',
-    title: 'Full clinical portfolio',
+    title: 'Full Clinical Portfolio',
     description:
-      'Added CSSD, operation theatre and critical care solutions — becoming a single-source partner for hospital equipment.',
+      'Expanded into MGPS, Modular Operation Theatres, CSSD and Critical Care Solutions — becoming a trusted single-source partner for complete hospital infrastructure and medical equipment projects.',
     image: '/journey/2010.png',
   },
   {
     year: 'Today',
     title: 'Nationwide, across every sector',
     description:
-      'Serving armed forces, public and private hospitals across Pakistan with supply, installation, training and after-sales support.',
+      'Serving the Armed Forces, public and private hospitals across Pakistan with an expanded portfolio of leading healthcare manufacturers and products — backed by expert supply, installation, training and after-sales support.',
     image: '/journey/today.png',
   },
 ]

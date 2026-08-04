@@ -22,15 +22,14 @@ export default function Partners() {
                 key={logo}
                 className="group flex h-28 items-center justify-center rounded-2xl border border-navy-100 bg-white p-6 shadow-[0_10px_30px_-18px_rgba(0,22,41,0.2)] transition-all duration-300 hover:-translate-y-1 hover:border-primary-200 hover:shadow-[0_24px_50px_-20px_rgba(0,56,103,0.3)]"
               >
-                <div className="relative h-full w-full">
-                  <Image
-                    src={logo}
-                    alt={principalBrands[index] ?? 'Principal manufacturer logo'}
-                    fill
-                    sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 220px"
-                    className="object-contain grayscale opacity-80 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-                  />
-                </div>
+                <Image
+                  src={logo}
+                  alt={principalBrands[index] ?? 'Principal manufacturer logo'}
+                  width={220}
+                  height={80}
+                  sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 220px"
+                  className="max-h-14 w-auto max-w-full object-contain grayscale opacity-80 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                />
               </div>
             ))}
           </div>

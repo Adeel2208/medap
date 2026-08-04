@@ -35,13 +35,13 @@ export default function Footer() {
         <div className="grid gap-12 py-16 lg:grid-cols-12 lg:py-20">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <Link href="/" aria-label="MEDAP International — Home" className="inline-flex items-center rounded-lg bg-white px-2.5 py-1.5">
+            <Link href="/" aria-label="MEDAP International — Home" className="inline-flex items-center">
               <Image
-                src="/MEDAP%20Logo.png"
+                src="/medap%20logo%202.png"
                 alt="MEDAP International"
-                width={220}
-                height={52}
-                className="h-9 w-auto object-contain"
+                width={260}
+                height={112}
+                className="h-16 w-auto object-contain"
               />
             </Link>
             <p className="mt-5 max-w-xs text-sm leading-relaxed">

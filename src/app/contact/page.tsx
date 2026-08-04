@@ -154,18 +154,18 @@ export default function ContactPage({ searchParams }: { searchParams?: { categor
                   </div>
                   <h3 className="mt-4 font-display text-lg font-bold text-navy">{office.name}</h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">{office.address}</p>
-                  {office.isHead && (
-                    <div className="mt-4 space-y-1.5 border-t border-primary-100 pt-4 text-sm text-gray-600">
+                  <div className="mt-4 space-y-1.5 border-t border-primary-100 pt-4 text-sm text-gray-600">
+                    {office.isHead && (
                       <p className="flex items-center gap-2">
                         <Phone className="h-4 w-4 text-primary-500" />
                         {site.phone} · {site.phoneSecondary}
                       </p>
-                      <p className="flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-primary-500" />
-                        {site.hours}
-                      </p>
-                    </div>
-                  )}
+                    )}
+                    <p className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-primary-500" />
+                      {site.hours}
+                    </p>
+                  </div>
                 </div>
               </FadeIn>
             ))}

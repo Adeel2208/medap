@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
-import { Send } from 'lucide-react'
+import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 import { site } from '@/data/site'
 import { categories } from '@/data/categories'
 
@@ -12,6 +12,12 @@ interface ContactFormProps {
 const inputClasses =
   'w-full rounded-lg border border-gray-300 px-4 py-3 text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow'
 
+// Web3Forms access key — reliably delivers submissions to your inbox with no server.
+// Set NEXT_PUBLIC_WEB3FORMS_KEY in your environment (Vercel → Settings → Environment Variables).
+const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? ''
+
+type Status = 'idle' | 'submitting' | 'success' | 'error'
+
 export default function ContactForm({ defaultCategory = '' }: ContactFormProps) {
   const [form, setForm] = useState({
     name: '',
@@ -21,30 +27,94 @@ export default function ContactForm({ defaultCategory = '' }: ContactFormProps) 
     category: defaultCategory,
     message: '',
   })
+  const [status, setStatus] = useState<Status>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
 
-  const update = (field: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
-    setForm({ ...form, [field]: e.target.value })
+  const update =
+    (field: keyof typeof form) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+      setForm({ ...form, [field]: e.target.value })
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     const categoryTitle = categories.find((c) => c.id === form.category)?.title
-    const subject = encodeURIComponent(
-      `Quote Request${categoryTitle ? ` — ${categoryTitle}` : ''} — ${form.organisation || form.name}`
+
+    // Fallback: if no access key is configured, open the visitor's mail client.
+    if (!ACCESS_KEY) {
+      const subject = encodeURIComponent(
+        `Quote Request${categoryTitle ? ` — ${categoryTitle}` : ''} — ${form.organisation || form.name}`
+      )
+      const body = encodeURIComponent(
+        [
+          `Name: ${form.name}`,
+          `Email: ${form.email}`,
+          form.phone && `Phone: ${form.phone}`,
+          form.organisation && `Hospital/Organisation: ${form.organisation}`,
+          categoryTitle && `Product Category: ${categoryTitle}`,
+          '',
+          form.message,
+        ]
+          .filter(Boolean)
+          .join('\n')
+      )
+      window.location.href = `${site.emailHref}?subject=${subject}&body=${body}`
+      return
+    }
+
+    setStatus('submitting')
+    setErrorMsg('')
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: ACCESS_KEY,
+          subject: `Quote Request${categoryTitle ? ` — ${categoryTitle}` : ''} — ${
+            form.organisation || form.name
+          }`,
+          from_name: form.name,
+          // Reply-To so you can respond straight to the enquirer
+          replyto: form.email,
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          organisation: form.organisation,
+          category: categoryTitle ?? 'Not specified',
+          message: form.message,
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setStatus('success')
+        setForm({ name: '', email: '', phone: '', organisation: '', category: defaultCategory, message: '' })
+      } else {
+        setStatus('error')
+        setErrorMsg(data.message || 'Something went wrong. Please email us directly.')
+      }
+    } catch {
+      setStatus('error')
+      setErrorMsg('Network error. Please email us directly at ' + site.email)
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="flex flex-col items-center justify-center rounded-2xl border border-primary-100 bg-primary-50/50 px-6 py-14 text-center">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white">
+          <CheckCircle2 className="h-7 w-7" />
+        </span>
+        <h3 className="mt-5 font-display text-xl font-bold text-navy">Message sent — thank you!</h3>
+        <p className="mt-2 max-w-sm text-sm leading-relaxed text-gray-600">
+          Our team has received your enquiry and will get back to you within one business day.
+        </p>
+        <button
+          onClick={() => setStatus('idle')}
+          className="mt-6 text-sm font-semibold text-primary-600 hover:text-primary-700"
+        >
+          Send another message
+        </button>
+      </div>
     )
-    const body = encodeURIComponent(
-      [
-        `Name: ${form.name}`,
-        `Email: ${form.email}`,
-        form.phone && `Phone: ${form.phone}`,
-        form.organisation && `Hospital/Organisation: ${form.organisation}`,
-        categoryTitle && `Product Category: ${categoryTitle}`,
-        '',
-        form.message,
-      ]
-        .filter(Boolean)
-        .join('\n')
-    )
-    window.location.href = `${site.emailHref}?subject=${subject}&body=${body}`
   }
 
   return (
@@ -108,12 +178,29 @@ export default function ContactForm({ defaultCategory = '' }: ContactFormProps) 
         />
       </div>
 
+      {status === 'error' && (
+        <div className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+          <AlertCircle className="h-5 w-5 shrink-0" />
+          <span>{errorMsg}</span>
+        </div>
+      )}
+
       <button
         type="submit"
-        className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary hover:bg-primary-600 text-white font-semibold px-8 py-3.5 transition-colors w-full sm:w-auto"
+        disabled={status === 'submitting'}
+        className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary hover:bg-primary-600 disabled:opacity-70 text-white font-semibold px-8 py-3.5 transition-colors w-full sm:w-auto"
       >
-        <Send className="w-5 h-5" />
-        Send Message
+        {status === 'submitting' ? (
+          <>
+            <Loader2 className="w-5 h-5 animate-spin" />
+            Sending…
+          </>
+        ) : (
+          <>
+            <Send className="w-5 h-5" />
+            Send Message
+          </>
+        )}
       </button>
     </form>
   )
