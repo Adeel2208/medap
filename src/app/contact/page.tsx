@@ -39,19 +39,26 @@ const contactMethods = [
 export default function ContactPage({ searchParams }: { searchParams?: { category?: string } }) {
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary-50/60 via-white to-white border-b border-primary-100/60">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-12 lg:py-16">
+      <section className="relative isolate overflow-hidden border-b border-primary-100/60">
+        {/* Background image (same as certifications page) */}
+        <div aria-hidden="true" className="absolute inset-0 -z-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/certifications.png" alt="" className="h-full w-full object-cover object-center" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/25 sm:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/40" />
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent" />
+        </div>
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-16 sm:py-20 lg:py-28 [text-shadow:0_1px_14px_rgba(255,255,255,0.85)]">
           <Breadcrumb items={[{ name: 'Contact' }]} />
           <FadeIn>
-            <div className="mt-8 max-w-3xl">
+            <div className="mt-8 max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-600">
                 Get in Touch
               </p>
-              <h1 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-navy leading-tight">
+              <h1 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy leading-tight">
                 Let&apos;s build better care together
               </h1>
-              <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+              <p className="mt-4 text-lg text-gray-700 leading-relaxed">
                 Whether you need equipment, a turnkey project or after-sales support, our specialists
                 are ready to help.
               </p>

@@ -34,7 +34,7 @@ export default function Hero() {
           {/* Content */}
           <div className="py-16 sm:py-20 lg:col-span-7 lg:py-24">
             <FadeIn>
-              <Eyebrow>Trusted Medical Equipment, Caring for Life</Eyebrow>
+              <Eyebrow>Delivering Integrated Healthcare Solutions with Quality, Innovation and Commitment</Eyebrow>
             </FadeIn>
 
             <h1 className="mt-6 font-display text-[1.9rem] font-extrabold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-6xl [text-shadow:0_1px_18px_rgba(255,255,255,0.8)]">
