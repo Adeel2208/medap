@@ -36,7 +36,7 @@ function CategoryCard({ category, featured = false }: { category: Category; feat
               alt={category.title}
               src={category.image}
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-contain p-6 transition-transform duration-500 ease-out group-hover:scale-110"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
             />
           )}
           {/* Product-count badge */}

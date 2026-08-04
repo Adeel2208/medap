@@ -102,7 +102,7 @@ export default function SolutionShowcase() {
                     <img
                       alt={category.title}
                       src={category.image}
-                      className="absolute inset-0 h-full w-full object-contain p-6"
+                      className="absolute inset-0 h-full w-full object-cover"
                     />
                   )}
                 </div>

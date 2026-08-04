@@ -21,11 +21,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.medapinternational.com'),
   icons: {
     icon: [
+      { url: '/favicon.ico', sizes: 'any' },
       { url: '/icon.png', type: 'image/png', sizes: '512x512' },
-      { url: '/favicon.png', type: 'image/png' },
     ],
     apple: '/apple-icon.png',
-    shortcut: '/icon.png',
+    shortcut: '/favicon.ico',
   },
   title: {
     default: 'MEDAP International - Leading Healthcare Solutions Provider Since 1990 | Pakistan',

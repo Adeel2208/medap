@@ -44,19 +44,27 @@ export default function CertificationsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary-50/60 via-white to-white border-b border-primary-100/60">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-12 lg:py-16">
+      <section className="relative isolate overflow-hidden border-b border-primary-100/60">
+        {/* Background image */}
+        <div aria-hidden="true" className="absolute inset-0 -z-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/certifications.png" alt="" className="h-full w-full object-cover object-center" />
+          {/* Readability overlays: strong white on the left fading clear on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/25 sm:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/40" />
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent" />
+        </div>
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-16 sm:py-20 lg:py-28 [text-shadow:0_1px_14px_rgba(255,255,255,0.85)]">
           <Breadcrumb items={[{ name: 'Certifications' }]} />
           <FadeIn>
-            <div className="mt-8 max-w-3xl">
+            <div className="mt-8 max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-600">
                 Quality &amp; Compliance
               </p>
-              <h1 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-navy">
+              <h1 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-navy">
                 Certified systems, compliant products
               </h1>
-              <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+              <p className="mt-4 text-lg text-gray-700 leading-relaxed">
                 Quality isn&apos;t a claim — it&apos;s a system. MEDAP International is ISO certified
                 and DRAP compliant, and we hold ourselves to those standards on every installation.
               </p>
