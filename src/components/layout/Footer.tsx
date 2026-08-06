@@ -39,9 +39,9 @@ export default function Footer() {
               <Image
                 src="/medap%20logo%202.png"
                 alt="MEDAP International"
-                width={260}
-                height={112}
-                className="h-16 w-auto object-contain"
+                width={360}
+                height={162}
+                className="h-24 w-auto object-contain sm:h-28"
               />
             </Link>
             <p className="mt-5 max-w-xs text-sm leading-relaxed">

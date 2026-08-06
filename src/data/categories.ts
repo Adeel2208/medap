@@ -25,7 +25,7 @@ export const categories: Category[] = [
   {
     id: 'operation-theatre',
     title: 'Operation Theatre Solutions',
-    shortTitle: 'Operation Theatre',
+    shortTitle: 'Operation Theatre Solutions',
     description: 'Complete OT infrastructure built for surgical precision',
     longDescription:
       'Everything a modern operating room needs — tables, lights, laminar flow, suction and surgical instruments — supplied, installed and serviced for precision, sterility and uptime.',
@@ -57,7 +57,7 @@ export const categories: Category[] = [
   {
     id: 'intensive-care',
     title: 'Intensive Care Solutions',
-    shortTitle: 'ICU, CCU & ER',
+    shortTitle: 'Intensive Care Solutions',
     description: 'Critical care monitoring and life-support equipment',
     longDescription:
       'Advanced monitoring, infusion and resuscitation equipment for intensive care, coronary care and emergency departments — from bedside monitors to central stations and crash carts.',
@@ -101,7 +101,7 @@ export const categories: Category[] = [
   {
     id: 'neonatal-nursery',
     title: 'Neonatal & Nursery Solutions',
-    shortTitle: 'Neonatal & Nursery',
+    shortTitle: 'Neonatal & Nursery Solutions',
     description: 'Specialised care for newborns and premature infants',
     longDescription:
       'Complete newborn care equipment — incubators, warmers, phototherapy and resuscitation systems designed to give the smallest patients the safest possible start.',
@@ -120,7 +120,7 @@ export const categories: Category[] = [
   {
     id: 'obstetrics-gynecology',
     title: 'Obstetrics & Gynecology Solutions',
-    shortTitle: 'Obs & Gyne',
+    shortTitle: 'Obstetrics & Gynecology Solutions',
     description: 'Maternal care from examination through delivery',
     longDescription:
       'Equipment for the full maternal journey — ultrasound, fetal monitoring, examination and delivery systems built for comfort, accuracy and clinical confidence.',
@@ -139,7 +139,7 @@ export const categories: Category[] = [
   {
     id: 'cssd',
     title: 'CSSD Solutions',
-    shortTitle: 'CSSD',
+    shortTitle: 'CSSD Solutions',
     description: 'Sterile processing and infection prevention',
     longDescription:
       'End-to-end central sterile services solutions — sterilizers, washer disinfectors, ultrasonic cleaners and CSSD furniture for validated, traceable reprocessing.',
@@ -158,7 +158,7 @@ export const categories: Category[] = [
   {
     id: 'medical-gas-pipeline',
     title: 'Medical Gas Pipeline Solutions',
-    shortTitle: 'Medical Gas (MGPS)',
+    shortTitle: 'Medical Gas Pipeline Solutions',
     description: 'Turnkey medical gas infrastructure, source to outlet',
     longDescription:
       'Design, supply, installation and commissioning of complete medical gas pipeline systems — from compressors and manifolds through colour-coded copper networks to bedside outlets.',
@@ -181,7 +181,7 @@ export const categories: Category[] = [
   {
     id: 'hospital-furniture',
     title: 'Hospital Furniture Solutions',
-    shortTitle: 'Hospital Furniture',
+    shortTitle: 'Hospital Furniture Solutions',
     description: 'Durable ward, ICU and OT furniture throughout',
     longDescription:
       'Hospital furniture engineered for daily clinical use — beds, trolleys, cabinets and stainless steel units built to last across wards, ICUs, theatres and waiting areas.',

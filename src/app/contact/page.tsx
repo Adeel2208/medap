@@ -44,9 +44,8 @@ export default function ContactPage({ searchParams }: { searchParams?: { categor
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/certifications.png" alt="" className="h-full w-full object-cover object-center" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/25 sm:to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/40" />
-          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/60 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </div>
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-16 sm:py-20 lg:py-28 [text-shadow:0_1px_14px_rgba(255,255,255,0.85)]">
           <Breadcrumb items={[{ name: 'Contact' }]} />

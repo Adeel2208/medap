@@ -13,8 +13,8 @@ const inputClasses =
   'w-full rounded-lg border border-gray-300 px-4 py-3 text-navy placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow'
 
 // Web3Forms access key — reliably delivers submissions to your inbox with no server.
-// Set NEXT_PUBLIC_WEB3FORMS_KEY in your environment (Vercel → Settings → Environment Variables).
-const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? ''
+// Uses NEXT_PUBLIC_WEB3FORMS_KEY if set, otherwise the account key below.
+const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? '0242ec50-98f7-428d-b14c-0471be768627'
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -39,25 +39,10 @@ export default function ContactForm({ defaultCategory = '' }: ContactFormProps) 
     e.preventDefault()
     const categoryTitle = categories.find((c) => c.id === form.category)?.title
 
-    // Fallback: if no access key is configured, open the visitor's mail client.
+    // The form sends the email directly via the Web3Forms API — it never opens a mail app.
     if (!ACCESS_KEY) {
-      const subject = encodeURIComponent(
-        `Quote Request${categoryTitle ? ` — ${categoryTitle}` : ''} — ${form.organisation || form.name}`
-      )
-      const body = encodeURIComponent(
-        [
-          `Name: ${form.name}`,
-          `Email: ${form.email}`,
-          form.phone && `Phone: ${form.phone}`,
-          form.organisation && `Hospital/Organisation: ${form.organisation}`,
-          categoryTitle && `Product Category: ${categoryTitle}`,
-          '',
-          form.message,
-        ]
-          .filter(Boolean)
-          .join('\n')
-      )
-      window.location.href = `${site.emailHref}?subject=${subject}&body=${body}`
+      setStatus('error')
+      setErrorMsg(`The form isn't configured yet. Please email us directly at ${site.email}.`)
       return
     }
 

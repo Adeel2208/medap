@@ -34,22 +34,22 @@ export default function Hero() {
           {/* Content */}
           <div className="py-16 sm:py-20 lg:col-span-7 lg:py-24">
             <FadeIn>
-              <Eyebrow>Delivering Integrated Healthcare Solutions with Quality, Innovation and Commitment</Eyebrow>
+              <Eyebrow>Creating Excellence in Healthcare Sector</Eyebrow>
             </FadeIn>
 
             <h1 className="mt-6 font-display text-[1.9rem] font-extrabold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-6xl [text-shadow:0_1px_18px_rgba(255,255,255,0.8)]">
               <WordReveal
-                text="Equipping Pakistan's hospitals with complete medical solutions"
-                accent={['complete', 'medical', 'solutions']}
+                text="Equipping Pakistan's hospitals with advanced medical solutions"
+                accent={['advanced', 'medical', 'solutions']}
               />
             </h1>
 
             <FadeIn delay={0.5}>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-gray-700 [text-shadow:0_1px_12px_rgba(255,255,255,0.9)]">
-                Electro-medical equipment, hospital furniture, surgical instruments, CSSD and medical
-                gas systems — trusted by{' '}
-                <span className="font-semibold text-navy">healthcare facilities nationwide</span> for
-                world-class technology and dependable, lifelong service.
+                <span className="font-semibold text-navy">
+                  Medical Equipment · CSSD · MGPS · Hospital Furniture · Surgical Instruments
+                </span>{' '}
+                — your trusted partner for world-class healthcare solutions.
               </p>
             </FadeIn>
 
