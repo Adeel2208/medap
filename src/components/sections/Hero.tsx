@@ -22,11 +22,27 @@ export default function Hero() {
           alt=""
           className="h-full w-full object-cover object-center"
         />
-        {/* Readability overlays: strong white on the left fading to clear on the right,
-            plus a soft top/bottom wash and a bottom fade into the page */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/20 sm:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-white/30" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
+        {/* Premium smooth gradient: strong white on left for text, crystal clear on right for city icons */}
+        <div 
+          className="absolute inset-0" 
+          style={{
+            background: 'linear-gradient(to right, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 15%, rgba(255,255,255,0.88) 25%, rgba(255,255,255,0.72) 38%, rgba(255,255,255,0.48) 52%, rgba(255,255,255,0.24) 68%, rgba(255,255,255,0.08) 85%, transparent 100%)'
+          }}
+        />
+        {/* Subtle top darkening for depth and contrast */}
+        <div 
+          className="absolute inset-0" 
+          style={{
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.03) 0%, transparent 20%)'
+          }}
+        />
+        {/* Bottom area enhancement: light on left for text, completely clear on right for city icons */}
+        <div 
+          className="absolute inset-x-0 bottom-0 h-40"
+          style={{
+            background: 'linear-gradient(to top, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 50%, transparent 100%), linear-gradient(to right, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.12) 35%, transparent 70%)'
+          }}
+        />
       </div>
 
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
@@ -37,7 +53,7 @@ export default function Hero() {
               <Eyebrow>Creating Excellence in Healthcare Sector</Eyebrow>
             </FadeIn>
 
-            <h1 className="mt-6 font-display text-[1.9rem] font-extrabold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-6xl [text-shadow:0_1px_18px_rgba(255,255,255,0.8)]">
+            <h1 className="mt-6 font-display text-[1.9rem] font-extrabold leading-[1.12] tracking-tight text-navy sm:text-5xl lg:text-6xl drop-shadow-[0_2px_8px_rgba(255,255,255,0.95)]">
               <WordReveal
                 text="Equipping Pakistan's hospitals with advanced medical solutions"
                 accent={['advanced', 'medical', 'solutions']}
@@ -45,8 +61,8 @@ export default function Hero() {
             </h1>
 
             <FadeIn delay={0.5}>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-gray-700 [text-shadow:0_1px_12px_rgba(255,255,255,0.9)]">
-                <span className="font-semibold text-navy">
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-gray-800 drop-shadow-[0_1px_4px_rgba(255,255,255,0.9)]">
+                <span className="font-bold text-navy">
                   Medical Equipment · CSSD · MGPS · Hospital Furniture · Surgical Instruments
                 </span>{' '}
                 — your trusted partner for world-class healthcare solutions.
@@ -54,17 +70,17 @@ export default function Hero() {
             </FadeIn>
 
             <FadeIn delay={0.65}>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:gap-3">
                 <Link
                   href="/products"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-[#25a5b3] px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_24px_-8px_rgba(45,184,199,0.7)] transition-all duration-300 hover:shadow-[0_12px_30px_-8px_rgba(45,184,199,0.8)] hover:-translate-y-0.5"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-[#25a5b3] px-8 py-4 text-base font-bold text-white shadow-[0_10px_30px_-8px_rgba(45,184,199,0.75)] transition-all duration-300 hover:shadow-[0_14px_36px_-8px_rgba(45,184,199,0.85)] hover:-translate-y-0.5 hover:scale-[1.02]"
                 >
                   Explore our solutions
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-navy bg-white/80 px-7 py-3.5 text-base font-semibold text-navy backdrop-blur-sm transition-all duration-300 hover:bg-navy hover:text-white"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-navy bg-white/95 px-8 py-4 text-base font-bold text-navy backdrop-blur-sm shadow-[0_4px_16px_-4px_rgba(0,56,103,0.2)] transition-all duration-300 hover:bg-navy hover:text-white hover:shadow-[0_8px_24px_-4px_rgba(0,56,103,0.3)] hover:scale-[1.02]"
                 >
                   Talk to our team
                 </Link>
@@ -72,9 +88,9 @@ export default function Hero() {
             </FadeIn>
 
             <FadeIn delay={0.8}>
-              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-gray-700">
+              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-semibold text-gray-800">
                 {heroBadges.map((badge) => (
-                  <span key={badge.label} className="inline-flex items-center gap-2 font-semibold">
+                  <span key={badge.label} className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
                     <badge.icon className="h-4 w-4 text-primary" />
                     {badge.label}
                   </span>

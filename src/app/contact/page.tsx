@@ -40,10 +40,10 @@ export default function ContactPage({ searchParams }: { searchParams?: { categor
   return (
     <>
       <section className="relative isolate overflow-hidden border-b border-primary-100/60">
-        {/* Background image (same as certifications page) */}
+        {/* Background image */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/certifications.png" alt="" className="h-full w-full object-cover object-center" />
+          <img src="/contact.png" alt="" className="h-full w-full object-cover object-center" />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/60 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </div>
