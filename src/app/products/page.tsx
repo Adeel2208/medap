@@ -26,10 +26,10 @@ export default function ProductsPage() {
     <>
       {/* Hero */}
       <section className="relative isolate overflow-hidden border-b border-primary-100/60">
-        {/* Background image (same as home hero) */}
+        {/* Background image */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/home.png" alt="" className="h-full w-full object-cover object-center" />
+          <img src="/solution.png" alt="" className="h-full w-full object-cover object-center" />
           {/* Readability overlays: strong white on the left fading clear on the right */}
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/25 sm:to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/40" />
