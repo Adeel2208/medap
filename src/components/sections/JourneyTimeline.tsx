@@ -17,15 +17,21 @@ function TimelineRow({ item, index }: { item: Milestone; index: number }) {
 
   const card = (
     <motion.div
-      initial={{ opacity: 0, x: flipped ? 60 : -60 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      // Vertical reveal at every size. The previous ±60px horizontal slide read
+      // oddly once the row stacks below `md` (content flying in sideways in a
+      // single-column list) and was the only horizontal transform on the site.
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="md:w-1/2"
     >
+      {/* Below md the card is the TOP half of one merged card: square bottom
+          corners, no bottom border, so it joins seamlessly to the photo. */}
       <div
         className={cn(
-          'group rounded-2xl border border-primary-100 bg-white p-6 shadow-[0_10px_30px_-20px_rgba(0,56,103,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-24px_rgba(0,56,103,0.35)]',
+          'group rounded-2xl rounded-b-none border border-b-0 border-primary-100 bg-white p-6 shadow-[0_10px_30px_-20px_rgba(0,56,103,0.3)] transition-all duration-300 hover:shadow-[0_24px_50px_-24px_rgba(0,56,103,0.35)]',
+          'md:rounded-2xl md:border-b md:hover:-translate-y-1',
           flipped && 'md:text-right'
         )}
       >
@@ -40,13 +46,15 @@ function TimelineRow({ item, index }: { item: Milestone; index: number }) {
 
   const media = (
     <motion.div
-      initial={{ opacity: 0, x: flipped ? -60 : 60, scale: 0.96 }}
-      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 24, scale: 0.98 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="mt-4 md:mt-0 md:w-1/2"
+      className="md:w-1/2"
     >
-      <div className="group relative aspect-[16/10] overflow-hidden rounded-2xl border border-primary-100 shadow-[0_10px_30px_-20px_rgba(0,56,103,0.3)]">
+      {/* ...and the photo is the BOTTOM half: square top corners, no top border.
+          No gap between the two, so a milestone reads as a single unit. */}
+      <div className="group relative aspect-[16/10] overflow-hidden rounded-2xl rounded-t-none border border-t-0 border-primary-100 shadow-[0_10px_30px_-20px_rgba(0,56,103,0.3)] md:rounded-2xl md:border-t">
         {item.image ? (
           <Image
             src={item.image}
@@ -66,21 +74,25 @@ function TimelineRow({ item, index }: { item: Milestone; index: number }) {
   )
 
   return (
+    // Below md the row is indented to clear the left-hand rail; from md it
+    // becomes the two-column layout straddling a centre rail.
     <div
       className={cn(
-        'relative md:flex md:items-center md:gap-12 md:py-8',
+        'relative pl-11 md:flex md:items-center md:gap-12 md:py-8 md:pl-0',
         flipped && 'md:flex-row-reverse'
       )}
     >
       {card}
 
-      {/* Center dot */}
+      {/* Milestone dot — on the left rail below md, on the centre rail from md.
+          Previously `hidden md:block`, which removed the timeline entirely on
+          phones and left the section reading as unrelated cards and photos. */}
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.4, delay: 0.15 }}
-        className="absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 md:block"
+        className="absolute left-4 top-8 z-10 -translate-x-1/2 md:left-1/2 md:top-1/2 md:-translate-y-1/2"
       >
         <span className="relative flex h-5 w-5 items-center justify-center">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400/60" />
@@ -103,15 +115,15 @@ export default function JourneyTimeline({ milestones }: { milestones: Milestone[
 
   return (
     <div ref={ref} className="relative mt-16">
-      {/* Static rail */}
-      <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-primary-100 md:block" />
+      {/* Static rail — left-hand on phones, centred from md */}
+      <div className="absolute left-4 top-0 h-full w-px -translate-x-1/2 bg-primary-100 md:left-1/2" />
       {/* Animated gradient fill that grows as you scroll */}
       <motion.div
         style={{ scaleY }}
-        className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 origin-top bg-gradient-to-b from-primary-500 via-primary-400 to-[#003867] md:block"
+        className="absolute left-4 top-0 h-full w-px -translate-x-1/2 origin-top bg-gradient-to-b from-primary-500 via-primary-400 to-[#003867] md:left-1/2"
       />
 
-      <div className="space-y-10 md:space-y-0">
+      <div className="space-y-12 md:space-y-0">
         {milestones.map((item, index) => (
           <TimelineRow key={item.year} item={item} index={index} />
         ))}
