@@ -44,7 +44,7 @@ export default function WhyMedap() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {values.map((value, index) => (
             <FadeIn key={value.title} delay={Math.min(index * 0.05, 0.2)} className="h-full">
-              <SpotlightCard className="rounded-3xl border border-navy-100 bg-white p-7 h-full shadow-[0_10px_30px_-18px_rgba(0,22,41,0.2)] transition-shadow duration-300 hover:shadow-[0_24px_50px_-20px_rgba(0,56,103,0.3)]">
+              <SpotlightCard className="rounded-3xl border border-navy-100 bg-white p-6 h-full sm:p-7 shadow-[0_10px_30px_-18px_rgba(0,22,41,0.2)] transition-shadow duration-300 hover:shadow-[0_24px_50px_-20px_rgba(0,56,103,0.3)]">
                 <span className="flex w-14 h-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100 ring-1 ring-inset ring-primary-200/60">
                   <value.icon className="w-7 h-7 text-primary-600" strokeWidth={1.6} />
                 </span>

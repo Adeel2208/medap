@@ -177,7 +177,7 @@ export default function AboutPage() {
                     delay={Math.min(index * 0.06, 0.2)}
                     className={index === 2 ? 'sm:col-span-2' : undefined}
                   >
-                    <SpotlightCard className="h-full rounded-3xl border border-navy-100 bg-white p-7 shadow-[0_10px_30px_-18px_rgba(0,22,41,0.2)] transition-shadow duration-300 hover:shadow-[0_24px_50px_-20px_rgba(0,56,103,0.3)]">
+                    <SpotlightCard className="h-full rounded-3xl border border-navy-100 bg-white p-6 sm:p-7 shadow-[0_10px_30px_-18px_rgba(0,22,41,0.2)] transition-shadow duration-300 hover:shadow-[0_24px_50px_-20px_rgba(0,56,103,0.3)]">
                       <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100 ring-1 ring-inset ring-primary-200/60">
                         <item.icon className="h-7 w-7 text-primary-600" strokeWidth={1.6} />
                       </span>

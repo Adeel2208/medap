@@ -67,8 +67,8 @@ export default function ContactPage({ searchParams }: { searchParams?: { categor
       </section>
 
       <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-5 lg:gap-12">
             {/* Contact methods */}
             <div className="lg:col-span-2 space-y-4">
               {contactMethods.map((method, index) => (
@@ -77,7 +77,7 @@ export default function ContactPage({ searchParams }: { searchParams?: { categor
                     <span className="w-11 h-11 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
                       <method.icon className="w-5 h-5 text-primary" />
                     </span>
-                    <div>
+                    <div className="min-w-0 break-words">
                       <h2 className="font-bold text-navy">{method.title}</h2>
                       {method.lines.map((line) =>
                         method.href ? (
@@ -100,7 +100,7 @@ export default function ContactPage({ searchParams }: { searchParams?: { categor
                   href={site.whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1fb457] text-white font-semibold px-6 py-4 transition-colors"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1fb457] text-white font-semibold px-5 py-4 text-center text-sm sm:px-6 sm:text-base transition-colors"
                 >
                   <MessageCircle className="w-5 h-5" />
                   WhatsApp us — {site.whatsapp}
@@ -142,7 +142,7 @@ export default function ContactPage({ searchParams }: { searchParams?: { categor
               <FadeIn key={office.name} delay={Math.min(index * 0.06, 0.2)} className="h-full">
                 <div
                   className={
-                    'flex h-full flex-col rounded-3xl border p-7 transition-all duration-300 hover:-translate-y-1 ' +
+                    'flex h-full flex-col rounded-3xl border p-6 transition-all duration-300 hover:-translate-y-1 sm:p-7 ' +
                     (office.isHead
                       ? 'border-primary-200 bg-gradient-to-br from-primary-50/70 to-white shadow-[0_18px_45px_-28px_rgba(0,56,103,0.4)]'
                       : 'border-primary-100 bg-white shadow-[0_10px_30px_-20px_rgba(0,56,103,0.3)] hover:shadow-[0_24px_50px_-24px_rgba(0,56,103,0.35)]')
@@ -210,13 +210,11 @@ export default function ContactPage({ searchParams }: { searchParams?: { categor
               <iframe
                 title="MEDAP International location on Google Maps"
                 src="https://www.google.com/maps?q=MEDAP%20International%2C%20Sharf%20Mansion%2C%20Shahrah-e-Fatima%20Jinnah%2C%20Lahore&output=embed"
-                width="100%"
-                height="440"
                 style={{ border: 0 }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
-                className="block w-full"
+                className="block h-[20rem] w-full sm:h-[24rem] lg:h-[27.5rem]"
               />
             </div>
           </FadeIn>

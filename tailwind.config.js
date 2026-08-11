@@ -10,12 +10,22 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      // 2rem of gutter is too much on a 320px phone — scale the gutter with the
+      // viewport so it matches the `px-5 sm:px-8` used by the page wrappers.
+      padding: {
+        DEFAULT: "1.25rem",
+        sm: "2rem",
+      },
       screens: {
         "2xl": "1400px",
       },
     },
     extend: {
+      screens: {
+        // Small-phone breakpoint (iPhone SE and up) for the few places where
+        // two columns only start to fit above ~400px.
+        xs: "400px",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -32,7 +32,10 @@ export default function SolutionShowcase() {
         <div className="grid gap-6 lg:grid-cols-12">
           {/* Department list */}
           <div className="lg:col-span-4">
-            <div className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+            {/* Below lg this is a swipeable strip. The negative margin lets it
+                bleed to the screen edges (so the last chip isn't cut off mid-card)
+                while the matching padding keeps the first chip aligned to the grid. */}
+            <div className="no-scrollbar touch-scroll-x -mx-5 flex snap-x snap-mandatory gap-2 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:px-8 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0 lg:pb-0">
               {categories.map((c) => {
                 const CIcon = categoryIcons[c.id]
                 const isActive = c.id === active
@@ -42,7 +45,7 @@ export default function SolutionShowcase() {
                     onClick={() => setActive(c.id)}
                     aria-pressed={isActive}
                     className={cn(
-                      'relative flex shrink-0 items-center gap-3 rounded-2xl px-4 py-3.5 text-left transition-colors lg:w-full',
+                      'relative flex shrink-0 snap-start items-center gap-3 rounded-2xl px-4 py-3.5 text-left transition-colors lg:w-full',
                       isActive ? 'text-white' : 'text-navy hover:bg-white'
                     )}
                   >

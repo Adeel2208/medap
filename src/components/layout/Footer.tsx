@@ -23,7 +23,8 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-b from-[#003867] to-[#00223e] text-white/70">
+    // pb-safe keeps the last row clear of the iOS home indicator (viewportFit=cover)
+    <footer className="relative overflow-hidden bg-gradient-to-b from-[#003867] to-[#00223e] text-white/70 pb-safe">
       {/* Decorative grid + glow */}
       <div className="pointer-events-none absolute inset-0 bg-grid opacity-40" />
       <div
@@ -32,9 +33,10 @@ export default function Footer() {
       />
 
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative">
-        <div className="grid gap-12 py-16 lg:grid-cols-12 lg:py-20">
+        {/* One column on phones, two on tablets, the 12-col layout on desktop */}
+        <div className="grid gap-10 py-14 sm:grid-cols-2 sm:gap-12 lg:grid-cols-12 lg:py-20">
           {/* Brand */}
-          <div className="lg:col-span-4">
+          <div className="sm:col-span-2 lg:col-span-4">
             <Link href="/" aria-label="MEDAP International — Home" className="inline-flex items-center">
               <Image
                 src="/medap%20logo%202.png"
@@ -140,7 +142,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-7 text-xs sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-7 text-center text-xs sm:flex-row sm:text-left">
           <p>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>

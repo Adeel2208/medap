@@ -81,7 +81,7 @@ export default function ServicesPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => (
               <FadeIn key={service.title} delay={Math.min(index * 0.04, 0.24)} className="h-full">
-                <SpotlightCard className="flex h-full flex-col rounded-3xl border border-primary-100 bg-white p-7 shadow-[0_10px_30px_-20px_rgba(0,56,103,0.3)] transition-shadow duration-300 hover:shadow-[0_24px_50px_-24px_rgba(0,56,103,0.35)]">
+                <SpotlightCard className="flex h-full flex-col rounded-3xl border border-primary-100 bg-white p-6 sm:p-7 shadow-[0_10px_30px_-20px_rgba(0,56,103,0.3)] transition-shadow duration-300 hover:shadow-[0_24px_50px_-24px_rgba(0,56,103,0.35)]">
                   <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100 ring-1 ring-inset ring-primary-200/60">
                     <service.icon className="h-7 w-7 text-primary-600" strokeWidth={1.6} />
                   </span>
@@ -118,7 +118,7 @@ export default function ServicesPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {serviceProcess.map((s, index) => (
               <FadeIn key={s.step} delay={Math.min(index * 0.08, 0.3)} className="h-full">
-                <div className="relative h-full rounded-3xl border border-white/10 bg-white/5 p-7 backdrop-blur-sm transition-colors duration-300 hover:bg-white/10">
+                <div className="relative h-full rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm sm:p-7 transition-colors duration-300 hover:bg-white/10">
                   <span className="font-display text-4xl font-extrabold text-primary-300">{s.step}</span>
                   <h3 className="mt-3 font-display text-lg font-bold text-white">{s.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-white/70">{s.description}</p>

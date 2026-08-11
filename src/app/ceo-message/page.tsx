@@ -68,7 +68,7 @@ export default function CEOMessagePage() {
                       </div>
                     </div>
                   ) : (
-                    <div className="p-7">
+                    <div className="p-6 sm:p-7">
                       <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100 font-display text-2xl font-extrabold text-primary-700 ring-1 ring-inset ring-primary-200/60">
                         {ceo.name
                           .split(' ')
@@ -79,7 +79,7 @@ export default function CEOMessagePage() {
                       <p className="mt-1 text-sm font-semibold text-primary-600">{ceo.role}</p>
                     </div>
                   )}
-                  <div className="p-7 pt-6">
+                  <div className="p-6 pt-6 sm:p-7 sm:pt-6">
                   <p className="text-sm leading-relaxed text-gray-600">{ceo.bio}</p>
 
                   <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-navy-100 pt-6">

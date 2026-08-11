@@ -80,7 +80,7 @@ export default function CertificationsPage() {
           <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
             {certifications.map((cert, index) => (
               <FadeIn key={cert.title} delay={Math.min(index * 0.08, 0.2)} className="h-full">
-                <SpotlightCard className="flex h-full flex-col rounded-3xl border border-navy-100 bg-white p-8 shadow-[0_10px_30px_-18px_rgba(0,22,41,0.2)] transition-shadow duration-300 hover:shadow-[0_24px_50px_-20px_rgba(0,56,103,0.3)]">
+                <SpotlightCard className="flex h-full flex-col rounded-3xl border border-navy-100 bg-white p-6 sm:p-8 shadow-[0_10px_30px_-18px_rgba(0,22,41,0.2)] transition-shadow duration-300 hover:shadow-[0_24px_50px_-20px_rgba(0,56,103,0.3)]">
                   <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100 ring-1 ring-inset ring-primary-200/60">
                     <cert.icon className="h-8 w-8 text-primary-600" strokeWidth={1.6} />
                   </span>

@@ -55,11 +55,20 @@
   }
   html {
     scroll-behavior: smooth;
+    /* Stop iOS Safari inflating text when a phone is rotated to landscape */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   body {
     @apply bg-background text-foreground font-sans;
-    /* Safety net: never allow horizontal scrolling from a stray wide element */
+    /* Safety net: never allow horizontal scrolling from a stray wide element.
+       Set on <body> only — <html> stays `visible` so the overflow propagates to
+       the viewport and `position: sticky` on the header keeps working. */
     overflow-x: hidden;
+    /* No grey flash box when tapping links/buttons on Android + iOS */
+    -webkit-tap-highlight-color: transparent;
+    /* Long unbroken strings (emails, model numbers) wrap instead of overflowing */
+    overflow-wrap: break-word;
   }
   /* Media never forces the viewport wider than the screen */
   img,
@@ -67,6 +76,47 @@
   svg,
   iframe {
     max-width: 100%;
+  }
+  img,
+  video {
+    height: auto;
+  }
+  /* Form controls inherit the 16px body size: anything smaller makes iOS Safari
+     zoom the viewport on focus and never zoom back out. */
+  input,
+  select,
+  textarea,
+  button {
+    font-size: inherit;
+  }
+  /* Give every interactive control a touch-friendly hit area on coarse pointers
+     (WCAG 2.5.8 target size), without changing the look on desktop. */
+  @media (pointer: coarse) {
+    a,
+    button,
+    [role='button'],
+    input[type='submit'] {
+      touch-action: manipulation;
+    }
+  }
+  /* Anchor targets clear the 4.5rem sticky header */
+  :target {
+    scroll-margin-top: 6rem;
+  }
+  /* Honour the OS "reduce motion" setting across Tailwind keyframes, CSS
+     transitions and Framer Motion's inline transforms alike. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -99,6 +149,15 @@
     }
   }
   
+  /* Mobile nav drawer: never taller than the space under the 4.5rem header bar,
+     so every item stays reachable on short screens. `dvh` (where supported)
+     tracks the collapsing browser chrome; `vh` is the fallback. */
+  .mobile-drawer-scroll {
+    max-height: calc(100vh - 4.5rem);
+    max-height: calc(100dvh - 4.5rem);
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
   }
@@ -115,5 +174,40 @@
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(45deg, #25a5b3, #003867);
+  }
+}
+
+@layer utilities {
+  /* Hide the scrollbar on touch-friendly horizontal strips while keeping the
+     element scrollable (and keyboard-focusable). */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Momentum scrolling for horizontal card/tab strips on iOS */
+  .touch-scroll-x {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  /* Safe-area helpers for notched / gesture-bar devices (viewportFit: cover) */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .px-safe {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  /* Dynamic viewport height with a static-vh fallback for older browsers.
+     `dvh` tracks the collapsing mobile browser chrome so full-height sections
+     don't jump as the URL bar hides. */
+  .min-h-screen-dvh {
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }

@@ -39,7 +39,7 @@ export default function ProjectsClient() {
                 <FadeIn key={s.id} delay={Math.min(index * 0.08, 0.24)} className="h-full">
                   <a
                     href={`#${s.id}`}
-                    className="group flex h-full w-full flex-col rounded-3xl border border-primary-100 bg-white p-7 text-left shadow-[0_10px_30px_-20px_rgba(0,56,103,0.3)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary-200 hover:shadow-[0_28px_55px_-24px_rgba(0,56,103,0.4)]"
+                    className="group flex h-full w-full flex-col rounded-3xl border border-primary-100 bg-white p-6 text-left sm:p-7 shadow-[0_10px_30px_-20px_rgba(0,56,103,0.3)] transition-all duration-300 hover:-translate-y-1.5 hover:border-primary-200 hover:shadow-[0_28px_55px_-24px_rgba(0,56,103,0.4)]"
                   >
                     <div className="flex items-center justify-between">
                       <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100 ring-1 ring-inset ring-primary-200/60">
@@ -55,8 +55,9 @@ export default function ProjectsClient() {
                     <h3 className="mt-1 font-display text-xl font-bold text-navy">{s.label}</h3>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">{s.blurb}</p>
 
-                    {/* Logo preview strip */}
-                    <div className="mt-6 flex items-center gap-2">
+                    {/* Logo preview strip — four 44px tiles plus the counter
+                        overflow a narrow card, so allow it to wrap. */}
+                    <div className="mt-6 flex flex-wrap items-center gap-2">
                       {s.logos.slice(0, 4).map((logo) => (
                         <span
                           key={logo}
@@ -65,7 +66,7 @@ export default function ProjectsClient() {
                           <Image src={logo} alt="" fill sizes="44px" className="object-contain" />
                         </span>
                       ))}
-                      <span className="ml-1 text-sm font-semibold text-gray-500">
+                      <span className="text-sm font-semibold text-gray-500">
                         +{s.logos.length - 4} more
                       </span>
                     </div>
@@ -102,15 +103,15 @@ export default function ProjectsClient() {
                 <div key={s.id} id={s.id} className="scroll-mt-28">
                   {/* Sector header */}
                   <FadeIn>
-                    <div className="mb-8 flex items-center gap-4">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100 ring-1 ring-inset ring-primary-200/60">
+                    <div className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100 ring-1 ring-inset ring-primary-200/60">
                         <Icon className="h-6 w-6 text-primary-600" strokeWidth={1.6} />
                       </span>
-                      <div>
-                        <h3 className="font-display text-2xl font-bold text-navy">{s.label}</h3>
+                      <div className="min-w-0 flex-1">
+                        <h3 className="font-display text-xl font-bold text-navy sm:text-2xl">{s.label}</h3>
                         <p className="text-sm text-gray-500">{s.blurb}</p>
                       </div>
-                      <span className="ml-auto shrink-0 rounded-full bg-primary-50 px-4 py-1.5 text-sm font-bold text-primary-700 ring-1 ring-inset ring-primary-100">
+                      <span className="shrink-0 rounded-full bg-primary-50 px-4 py-1.5 text-sm font-bold text-primary-700 ring-1 ring-inset ring-primary-100 sm:ml-auto">
                         {s.logos.length} institutions
                       </span>
                     </div>

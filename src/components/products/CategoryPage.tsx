@@ -115,10 +115,10 @@ export default function CategoryPage({ category }: { category: Category }) {
           </div>
 
           <FadeIn>
-            <div className="mt-12 relative overflow-hidden rounded-[2rem] bg-gradient-to-r from-[#003867] to-[#004a6b] p-8 lg:p-10">
+            <div className="mt-12 relative overflow-hidden rounded-[1.5rem] p-6 sm:rounded-[2rem] sm:p-8 lg:p-10 bg-gradient-to-r from-[#003867] to-[#004a6b]">
               <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/25 blur-3xl" />
               <div className="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-primary/15 blur-3xl" />
-              <div className="relative flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div className="relative flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left">
                 <div>
                   <h3 className="font-display text-xl lg:text-2xl font-bold text-white">
                     Need help choosing {category.shortTitle} equipment?
@@ -129,7 +129,7 @@ export default function CategoryPage({ category }: { category: Category }) {
                 </div>
                 <Link
                   href={`/contact?category=${category.id}`}
-                  className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 font-semibold text-white shadow-[0_8px_24px_-8px_rgba(45,184,199,0.7)] transition-all duration-300 hover:bg-primary-600 hover:-translate-y-0.5"
+                  className="group inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 font-semibold text-white shadow-[0_8px_24px_-8px_rgba(45,184,199,0.7)] transition-all duration-300 hover:bg-primary-600 hover:-translate-y-0.5 sm:w-auto"
                 >
                   Get a Quote
                   <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />

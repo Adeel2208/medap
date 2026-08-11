@@ -26,7 +26,19 @@ export default function Header() {
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
   const [productsOpen, setProductsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  // Only wire up hover-to-open where hovering actually exists. On a touch
+  // tablet (which is wide enough for the desktop nav) a tap fires mouseenter
+  // *and* click, which would open then instantly re-close the panel.
+  const [canHover, setCanHover] = useState(false)
   const pathname = usePathname()
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)')
+    const sync = () => setCanHover(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -37,8 +49,45 @@ export default function Header() {
 
   useEffect(() => {
     setMobileOpen(false)
+    setMobileProductsOpen(false)
     setProductsOpen(false)
   }, [pathname])
+
+  // Close either menu with Escape — the only way out for keyboard users, and a
+  // useful escape hatch on tablets where the dropdown is opened by tap.
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      setProductsOpen(false)
+      setMobileOpen(false)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
+
+  // Without hover there is no mouseleave to close the solutions panel, so
+  // dismiss it on the next tap outside the header.
+  useEffect(() => {
+    if (!productsOpen || canHover) return
+    const onPointerDown = (e: PointerEvent) => {
+      const target = e.target as HTMLElement | null
+      if (target && target.closest('header')) return
+      setProductsOpen(false)
+    }
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => document.removeEventListener('pointerdown', onPointerDown)
+  }, [productsOpen, canHover])
+
+  // Lock the page behind the mobile drawer so the drawer scrolls on its own
+  // instead of dragging the page underneath it.
+  useEffect(() => {
+    if (!mobileOpen) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previous
+    }
+  }, [mobileOpen])
 
   const isActive = (item: (typeof navItems)[number]) =>
     item.hasDropdown ? pathname.startsWith('/products') : pathname === item.href
@@ -75,26 +124,46 @@ export default function Header() {
                 <li
                   key={item.name}
                   className="relative"
-                  onMouseEnter={item.hasDropdown ? () => setProductsOpen(true) : undefined}
-                  onMouseLeave={item.hasDropdown ? () => setProductsOpen(false) : undefined}
+                  onMouseEnter={item.hasDropdown && canHover ? () => setProductsOpen(true) : undefined}
+                  onMouseLeave={item.hasDropdown && canHover ? () => setProductsOpen(false) : undefined}
                 >
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      'relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-colors',
-                      isActive(item) ? 'text-primary-600' : 'text-gray-600 hover:text-primary-600'
-                    )}
-                  >
+                  {/* The active pill lives on the wrapper so it spans the label
+                      and the dropdown chevron together. */}
+                  <div className="relative inline-flex items-center">
                     {isActive(item) && (
                       <span className="absolute inset-0 -z-10 rounded-full bg-primary-50 ring-1 ring-inset ring-primary-100" />
                     )}
-                    {item.name}
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        'inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-colors',
+                        item.hasDropdown && 'pr-2',
+                        isActive(item) ? 'text-primary-600' : 'text-gray-600 hover:text-primary-600'
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                    {/* Separate toggle: hover opens the panel for mouse users, but
+                        touch and keyboard users need a control that opens it
+                        without navigating away first. */}
                     {item.hasDropdown && (
-                      <ChevronDown
-                        className={cn('h-3.5 w-3.5 transition-transform duration-200', productsOpen && 'rotate-180')}
-                      />
+                      <button
+                        type="button"
+                        onClick={() => setProductsOpen((open) => !open)}
+                        aria-expanded={productsOpen}
+                        aria-haspopup="true"
+                        aria-label={productsOpen ? 'Hide solutions menu' : 'Show solutions menu'}
+                        className={cn(
+                          'inline-flex h-8 w-7 items-center justify-center rounded-full transition-colors',
+                          isActive(item) ? 'text-primary-600' : 'text-gray-600 hover:text-primary-600'
+                        )}
+                      >
+                        <ChevronDown
+                          className={cn('h-3.5 w-3.5 transition-transform duration-200', productsOpen && 'rotate-180')}
+                        />
+                      </button>
                     )}
-                  </Link>
+                  </div>
 
                   {item.hasDropdown && (
                     <AnimatePresence>
@@ -183,7 +252,13 @@ export default function Header() {
               transition={{ duration: 0.25 }}
               className="lg:hidden overflow-hidden border-t border-gray-100 bg-white"
             >
-              <nav className="mx-auto w-full max-w-7xl px-5 sm:px-8 py-4 space-y-1" aria-label="Mobile navigation">
+              {/* Capped to the space below the 4.5rem bar and scrolled on its
+                  own, so the full menu stays reachable on short screens
+                  (small phones, and any phone in landscape). */}
+              <nav
+                className="mobile-drawer-scroll mx-auto w-full max-w-7xl space-y-1 overflow-y-auto overscroll-contain px-5 pt-4 sm:px-8"
+                aria-label="Mobile navigation"
+              >
                 {navItems.map((item) =>
                   item.hasDropdown ? (
                     <div key={item.name}>

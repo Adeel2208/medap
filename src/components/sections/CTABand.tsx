@@ -16,7 +16,7 @@ export default function CTABand() {
       <DotGrid />
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#00223e] via-[#003867] to-[#00243f] px-6 py-16 shadow-[0_40px_80px_-40px_rgba(0,34,62,0.7)] sm:px-14 sm:py-20">
+          <div className="relative overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-[#00223e] via-[#003867] to-[#00243f] px-5 py-14 shadow-[0_40px_80px_-40px_rgba(0,34,62,0.7)] sm:rounded-[2rem] sm:px-14 sm:py-20">
             {/* Grid texture */}
             <div className="absolute inset-0 bg-grid opacity-[0.35]" />
             {/* Teal corner glows */}
@@ -39,7 +39,7 @@ export default function CTABand() {
               </p>
 
               {/* Buttons */}
-              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <div className="mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
                 <Link
                   href="/contact"
                   className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-[#25a5b3] px-8 py-4 text-base font-semibold text-white shadow-[0_0_0_1px_rgba(45,184,199,0.4),0_12px_30px_-8px_rgba(45,184,199,0.7)] transition-all duration-300 hover:shadow-[0_0_0_1px_rgba(45,184,199,0.6),0_16px_40px_-8px_rgba(45,184,199,0.85)] hover:-translate-y-0.5"

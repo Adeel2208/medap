@@ -13,7 +13,10 @@ const heroBadges = [
 
 export default function Hero() {
   return (
-    <section className="relative isolate flex min-h-[560px] items-center overflow-hidden sm:min-h-[80vh] lg:min-h-[88vh]">
+    // Portrait phones get a fixed min-height rather than a vh value: `vh` on
+    // mobile is measured against the *expanded* browser chrome, so a vh-based
+    // hero jumps as the URL bar collapses on scroll.
+    <section className="relative isolate flex min-h-[30rem] items-center overflow-hidden sm:min-h-[80vh] lg:min-h-[88vh]">
       {/* Background image */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -22,9 +25,19 @@ export default function Hero() {
           alt=""
           className="h-full w-full object-cover object-center"
         />
-        {/* Premium smooth gradient: strong white on left for text, crystal clear on right for city icons */}
-        <div 
-          className="absolute inset-0" 
+        {/* Mobile: the copy spans the full width, so the left-to-right wash would
+            leave dark text sitting on a busy photo. Use a top-down wash instead —
+            opaque behind the text, clearing towards the bottom of the image. */}
+        <div
+          className="absolute inset-0 sm:hidden"
+          style={{
+            background:
+              'linear-gradient(to bottom, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.94) 45%, rgba(255,255,255,0.82) 70%, rgba(255,255,255,0.55) 88%, rgba(255,255,255,0.35) 100%)',
+          }}
+        />
+        {/* Tablet and up: strong white on left for text, crystal clear on right for city icons */}
+        <div
+          className="absolute inset-0 hidden sm:block"
           style={{
             background: 'linear-gradient(to right, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 15%, rgba(255,255,255,0.88) 25%, rgba(255,255,255,0.72) 38%, rgba(255,255,255,0.48) 52%, rgba(255,255,255,0.24) 68%, rgba(255,255,255,0.08) 85%, transparent 100%)'
           }}
@@ -48,7 +61,7 @@ export default function Hero() {
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-12">
           {/* Content */}
-          <div className="py-16 sm:py-20 lg:col-span-7 lg:py-24">
+          <div className="py-14 sm:py-20 lg:col-span-7 lg:py-24">
             <FadeIn>
               <Eyebrow>Creating Excellence in Healthcare Sector</Eyebrow>
             </FadeIn>

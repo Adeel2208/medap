@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -109,6 +109,20 @@ export const metadata: Metadata = {
   category: 'healthcare',
 }
 
+// Mobile viewport contract. `viewportFit: 'cover'` lets the page paint into the
+// notch/home-indicator area on iOS; the safe-area padding in globals.css keeps
+// content clear of it. `maximumScale` is deliberately left unset so users can
+// always pinch-zoom (WCAG 1.4.4).
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#003867' },
+  ],
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -187,7 +201,9 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <div className="relative min-h-screen flex flex-col">
+        {/* px-safe is 0 in portrait; in landscape on notched phones it keeps the
+            whole page clear of the sensor housing (we render viewportFit=cover). */}
+        <div className="relative min-h-screen flex flex-col px-safe">
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
