@@ -30,8 +30,14 @@ export default function SolutionShowcase() {
         />
 
         <div className="grid gap-6 lg:grid-cols-12">
-          {/* Department list */}
-          <div className="lg:col-span-4">
+          {/* Department list.
+              min-w-0 is load-bearing: a grid item defaults to `min-width: auto`,
+              so this column refuses to shrink below the min-content width of the
+              tab row inside it (7 shrink-0 chips with whitespace-nowrap labels,
+              ~1845px). That stretched the single-column track below `lg` and blew
+              both columns far past the viewport — invisible until you lift the
+              overflow-x:hidden on <body>, which was clipping it into half-images. */}
+          <div className="min-w-0 lg:col-span-4">
             {/* Below lg this is a swipeable strip. The negative margin lets it
                 bleed to the screen edges (so the last chip isn't cut off mid-card)
                 while the matching padding keeps the first chip aligned to the grid. */}
@@ -81,7 +87,7 @@ export default function SolutionShowcase() {
           </div>
 
           {/* Detail panel */}
-          <div className="lg:col-span-8">
+          <div className="min-w-0 lg:col-span-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={category.id}
@@ -105,6 +111,8 @@ export default function SolutionShowcase() {
                     <img
                       alt={category.title}
                       src={category.image}
+                      loading="lazy"
+                      decoding="async"
                       className="absolute inset-0 h-full w-full object-cover"
                     />
                   )}
@@ -143,7 +151,7 @@ export default function SolutionShowcase() {
                     </Link>
                     <Link
                       href={`/contact?category=${category.id}`}
-                      className="text-sm font-semibold text-navy hover:text-primary-600 transition-colors"
+                      className="inline-block py-1.5 text-sm font-semibold text-navy transition-colors hover:text-primary-600"
                     >
                       Request a quote →
                     </Link>

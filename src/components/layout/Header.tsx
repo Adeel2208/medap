@@ -109,7 +109,7 @@ export default function Header() {
               className="inline-flex items-center shrink-0"
             >
               <Image
-                src="/MEDAP%20Logo.png"
+                src="/MEDAP%20Logo.webp"
                 alt="MEDAP International"
                 width={220}
                 height={52}
@@ -215,7 +215,7 @@ export default function Header() {
             <div className="hidden items-center gap-3 lg:flex">
               <a
                 href={site.phoneHref}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-primary-600"
+                className="inline-flex items-center gap-2 py-1 text-sm font-semibold text-navy transition-colors hover:text-primary-600"
               >
                 <Phone className="h-4 w-4 text-primary" />
                 {site.phone}

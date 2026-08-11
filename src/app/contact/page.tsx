@@ -42,9 +42,19 @@ export default function ContactPage({ searchParams }: { searchParams?: { categor
       <section className="relative isolate overflow-hidden border-b border-primary-100/60">
         {/* Background image */}
         <div aria-hidden="true" className="absolute inset-0 -z-10">
+          {/* Subject sits in the right third of the artwork; a portrait crop
+              centred on the image lands on empty space, so anchor it right. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/contact.png" alt="" className="h-full w-full object-cover object-center" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/60 to-transparent" />
+          <img
+            src="/contact.webp"
+            alt=""
+            decoding="async"
+            className="h-full w-full object-cover object-right sm:object-center"
+          />
+          {/* Mobile: the copy spans the full width, so wash top-down over the crop */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/35 sm:hidden" />
+          {/* Tablet+: strong white on the left fading clear on the right */}
+          <div className="absolute inset-0 hidden bg-gradient-to-r from-white via-white/60 to-transparent sm:block" />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </div>
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 py-16 sm:py-20 lg:py-28 [text-shadow:0_1px_14px_rgba(255,255,255,0.85)]">
@@ -81,7 +91,11 @@ export default function ContactPage({ searchParams }: { searchParams?: { categor
                       <h2 className="font-bold text-navy">{method.title}</h2>
                       {method.lines.map((line) =>
                         method.href ? (
-                          <a key={line} href={method.href} className="block text-sm text-gray-600 hover:text-primary transition-colors mt-1">
+                          <a
+                            key={line}
+                            href={method.href}
+                            className="mt-1 block py-1 text-sm text-gray-600 transition-colors hover:text-primary"
+                          >
                             {line}
                           </a>
                         ) : (

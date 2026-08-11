@@ -14,7 +14,10 @@ export default function Breadcrumb({ items, dark = false }: { items: Crumb[]; da
       aria-label="Breadcrumb"
       className={cn('flex items-center flex-wrap gap-1.5 text-sm', dark ? 'text-white/60' : 'text-gray-500')}
     >
-      <Link href="/" className={cn('transition-colors', dark ? 'hover:text-white' : 'hover:text-primary')}>
+      <Link
+        href="/"
+        className={cn('inline-block py-1 transition-colors', dark ? 'hover:text-white' : 'hover:text-primary')}
+      >
         Home
       </Link>
       {items.map((item) => (
@@ -23,7 +26,10 @@ export default function Breadcrumb({ items, dark = false }: { items: Crumb[]; da
           {item.href ? (
             <Link
               href={item.href}
-              className={cn('transition-colors', dark ? 'hover:text-white' : 'hover:text-primary')}
+              className={cn(
+                'inline-block py-1 transition-colors',
+                dark ? 'hover:text-white' : 'hover:text-primary'
+              )}
             >
               {item.name}
             </Link>

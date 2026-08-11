@@ -39,7 +39,7 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-4">
             <Link href="/" aria-label="MEDAP International — Home" className="inline-flex items-center">
               <Image
-                src="/medap%20logo%202.png"
+                src="/medap%20logo%202.webp"
                 alt="MEDAP International"
                 width={360}
                 height={162}
@@ -66,7 +66,9 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm">
               {companyLinks.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="transition-colors hover:text-white">
+                  {/* inline-block + py-1 lifts the hit area to ~27px; a bare
+                      text link is only ~19px, under the 24px WCAG 2.5.8 floor */}
+                  <Link href={link.href} className="inline-block py-1 transition-colors hover:text-white">
                     {link.name}
                   </Link>
                 </li>
@@ -80,7 +82,10 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm">
               {categories.map((category) => (
                 <li key={category.id}>
-                  <Link href={`/products/${category.id}`} className="transition-colors hover:text-white">
+                  <Link
+                    href={`/products/${category.id}`}
+                    className="inline-block py-1 transition-colors hover:text-white"
+                  >
                     {category.title}
                   </Link>
                 </li>
@@ -99,7 +104,7 @@ export default function Footer() {
               <li className="flex gap-3">
                 <Phone className="mt-0.5 h-5 w-5 shrink-0 text-primary-300" />
                 <span>
-                  <a href={site.phoneHref} className="transition-colors hover:text-white">
+                  <a href={site.phoneHref} className="inline-block py-1 transition-colors hover:text-white">
                     {site.phone}
                   </a>
                   {' · '}
@@ -109,11 +114,17 @@ export default function Footer() {
               <li className="flex gap-3">
                 <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary-300" />
                 <span className="break-all">
-                  <a href={`mailto:${site.email}`} className="transition-colors hover:text-white">
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="inline-block py-1 transition-colors hover:text-white"
+                  >
                     {site.email}
                   </a>
                   <br />
-                  <a href={`mailto:${site.emailSecondary}`} className="transition-colors hover:text-white">
+                  <a
+                    href={`mailto:${site.emailSecondary}`}
+                    className="inline-block py-1 transition-colors hover:text-white"
+                  >
                     {site.emailSecondary}
                   </a>
                 </span>

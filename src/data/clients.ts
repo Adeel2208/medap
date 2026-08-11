@@ -5,62 +5,52 @@ export interface ClientSector {
   logos: string[]
 }
 
-const ext = (sector: string, list: [number, string][]) =>
-  list.map(([n, e]) => `/clients/${sector}/${sector}-${n}.${e}`)
+// Every client logo now has a .webp copy in /public (the original .png/.jpg/.jpeg
+// files are kept alongside), so the per-file extension list is no longer needed —
+// logos are numbered contiguously from 1.
+const logos = (sector: string, count: number) =>
+  Array.from({ length: count }, (_, i) => `/clients/${sector}/${sector}-${i + 1}.webp`)
 
 export const clientSectors: ClientSector[] = [
   {
     id: 'armed-forces',
     label: 'Armed Forces',
     blurb: 'Combined Military Hospitals and defence medical institutions nationwide.',
-    logos: ext('armed-forces', [
-      [1, 'jpg'], [2, 'png'], [3, 'jpg'], [4, 'png'], [5, 'png'],
-      [6, 'jpg'], [7, 'jpg'], [8, 'jpg'], [9, 'png'],
-    ]),
+    logos: logos('armed-forces', 9),
   },
   {
     id: 'public-sector',
     label: 'Public Sector',
     blurb: 'Teaching hospitals, DHQs and government health institutions across Pakistan.',
-    logos: ext('public-sector', [
-      [1, 'png'], [2, 'jpeg'], [3, 'jpeg'], [4, 'jpeg'], [5, 'jpg'], [6, 'png'],
-      [7, 'jpeg'], [8, 'png'], [9, 'png'], [10, 'png'], [11, 'jpeg'], [12, 'jpeg'],
-      [13, 'png'], [14, 'jpg'], [15, 'png'], [16, 'png'], [17, 'png'], [18, 'png'],
-      [19, 'png'], [20, 'jpeg'], [21, 'png'], [22, 'jpg'], [23, 'png'], [24, 'jpg'],
-      [25, 'png'], [26, 'jpg'], [27, 'jpg'], [28, 'jpeg'], [29, 'png'], [30, 'jpg'],
-      [31, 'jpg'], [32, 'jpg'], [33, 'png'], [34, 'jpeg'], [35, 'png'], [36, 'png'],
-    ]),
+    logos: logos('public-sector', 36),
   },
   {
     id: 'private-sector',
     label: 'Private Sector',
     blurb: 'Leading private hospitals, trusts and specialised healthcare providers.',
-    logos: ext('private-sector', [
-      [1, 'jpg'], [2, 'png'], [3, 'png'], [4, 'jpg'], [5, 'jpg'], [6, 'jpg'],
-      [7, 'png'], [8, 'jpg'], [9, 'jpg'], [10, 'png'], [11, 'jpeg'],
-    ]),
+    logos: logos('private-sector', 11),
   },
 ]
 
 export const totalClientCount = clientSectors.reduce((sum, s) => sum + s.logos.length, 0)
 
 export const principalLogos = [
-  '/principals/principal-1.png',
-  '/principals/principal-2.jpeg',
-  '/principals/principal-3.jpg',
-  '/principals/principal-4.png',
-  '/principals/principal-5.jpg',
-  '/principals/principal-6.png',
-  '/principals/principal-7.png',
-  '/principals/principal-8.jpg',
-  '/principals/principal-9.jpg',
-  '/principals/principal-10.jpg',
-  '/principals/principal-11.png',
-  '/principals/principal-12.jpeg',
-  '/principals/principal-13.png',
-  '/principals/principal-14.png',
-  '/principals/principal-15.jpg',
-  '/principals/principal-16.png',
+  '/principals/principal-1.webp',
+  '/principals/principal-2.webp',
+  '/principals/principal-3.webp',
+  '/principals/principal-4.webp',
+  '/principals/principal-5.webp',
+  '/principals/principal-6.webp',
+  '/principals/principal-7.webp',
+  '/principals/principal-8.webp',
+  '/principals/principal-9.webp',
+  '/principals/principal-10.webp',
+  '/principals/principal-11.webp',
+  '/principals/principal-12.webp',
+  '/principals/principal-13.webp',
+  '/principals/principal-14.webp',
+  '/principals/principal-15.webp',
+  '/principals/principal-16.webp',
 ]
 
 /** Principal manufacturers we represent, as named in the 2026-27 product list. */

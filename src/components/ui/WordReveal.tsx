@@ -7,10 +7,23 @@ interface WordRevealProps {
   className?: string
   /** Words to render in the accent (primary) color */
   accent?: string[]
+  /**
+   * Colour for accented words. Defaults to a shade that clears WCAG AA for
+   * large text on a light background (primary-600 on white ≈ 3.7:1);
+   * primary-300 only reaches ~1.9:1 there. Pass a lighter shade explicitly
+   * when rendering on a dark surface.
+   */
+  accentClassName?: string
   delay?: number
 }
 
-export default function WordReveal({ text, className, accent = [], delay = 0 }: WordRevealProps) {
+export default function WordReveal({
+  text,
+  className,
+  accent = [],
+  accentClassName = 'text-primary-600',
+  delay = 0,
+}: WordRevealProps) {
   const words = text.split(' ')
   return (
     <span className={className}>
@@ -19,7 +32,7 @@ export default function WordReveal({ text, className, accent = [], delay = 0 }: 
           key={`${word}-${index}`}
           className={
             accent.includes(word.replace(/[^\w’']/g, '')) || accent.includes(word)
-              ? 'inline-block text-primary-300'
+              ? `inline-block ${accentClassName}`
               : 'inline-block'
           }
           initial={{ opacity: 0, y: 10, filter: 'blur(6px)' }}

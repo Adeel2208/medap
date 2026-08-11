@@ -52,28 +52,28 @@ const timeline = [
     title: 'Founded in Lahore',
     description:
       'MEDAP International begins supplying medical equipment and hospital furniture to healthcare institutions in Punjab.',
-    image: '/journey/1990.jpeg',
+    image: '/journey/1990.webp',
   },
   {
     year: '2000s',
     title: 'CSSD Projects',
     description:
       'Expanded into comprehensive Central Sterile Services Department (CSSD) solutions for new hospital projects — providing complete design, supply, installation, testing, commissioning and validation services.',
-    image: '/journey/2000.png',
+    image: '/journey/2000.webp',
   },
   {
     year: '2010s',
     title: 'Full Clinical Portfolio',
     description:
       'Expanded into MGPS, Modular Operation Theatres, CSSD and Critical Care Solutions — becoming a trusted single-source partner for complete hospital infrastructure and medical equipment projects.',
-    image: '/journey/2010.png',
+    image: '/journey/2010.webp',
   },
   {
     year: 'Today',
     title: 'Nationwide, across every sector',
     description:
       'Serving the Armed Forces, public and private hospitals across Pakistan with an expanded portfolio of leading healthcare manufacturers and products — backed by expert supply, installation, training and after-sales support.',
-    image: '/journey/today.png',
+    image: '/journey/today.webp',
   },
 ]
 
@@ -259,7 +259,7 @@ export default function AboutPage() {
             <div className="mt-10 text-center">
               <Link
                 href="/ceo-message"
-                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors"
+                className="group inline-flex items-center gap-1.5 py-1.5 text-sm font-semibold text-primary-600 transition-colors hover:text-primary-700"
               >
                 Read the full CEO message
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

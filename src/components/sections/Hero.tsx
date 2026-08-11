@@ -19,11 +19,16 @@ export default function Hero() {
     <section className="relative isolate flex min-h-[30rem] items-center overflow-hidden sm:min-h-[80vh] lg:min-h-[88vh]">
       {/* Background image */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
+        {/* The artwork is a 16:9 composition: empty navy on the left (reserved
+            for the desktop copy) and the clinicians on the right. A portrait
+            phone crops to the middle, which lands on equipment and cuts both
+            people out — so anchor the crop to the right on small screens. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/home.png"
+          src="/home.webp"
           alt=""
-          className="h-full w-full object-cover object-center"
+          decoding="async"
+          className="h-full w-full object-cover object-right sm:object-center"
         />
         {/* Mobile: the copy spans the full width, so the left-to-right wash would
             leave dark text sitting on a busy photo. Use a top-down wash instead —
